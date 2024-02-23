@@ -26,6 +26,10 @@ def img_pred(uploaded_image):
 
     return prediction
 
+@app.route('/')
+def index():
+    return 'hello world'
+
 # Create the endpoint for the model
 @app.route('/predict', methods=['POST'])
 def predict():
