@@ -1,3 +1,5 @@
+import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
 from flask import Flask, request, jsonify
 import io
 import base64
@@ -6,8 +8,21 @@ from PIL import Image
 import cv2
 # from tensorflow.keras.models import load_model
 from keras.models import load_model
+import tensorflow as tf
  
 app = Flask(__name__)
+
+def check_gpu_availability():
+    try:
+        physical_devices = tf.config.list_physical_devices('GPU')
+        if len(physical_devices) > 0:
+            print("GPU is available")
+        else:
+            print("GPU is not available")
+    except Exception as e:
+        print("Error checking GPU availability:", e)
+
+check_gpu_availability()
 
 # Load the trained model
 model = load_model('final_project.h5')
