@@ -4,7 +4,8 @@ import base64
 import numpy as np
 from PIL import Image
 import cv2
-from tensorflow.keras.models import load_model
+# from tensorflow.keras.models import load_model
+from keras.models import load_model
 
 app = Flask(__name__)
 
@@ -33,19 +34,19 @@ def index():
 # Create the endpoint for the model
 @app.route('/predict', methods=['POST'])
 def predict():
-    # if request.method == 'POST':
-    #     file = request.files['image']
-    #     if file:
-    #         img = file.read()
-    #         prediction = img_pred(img)
-    #         return jsonify({'prediction': prediction})
-    #     else:
-    #         return jsonify({'error': 'No image uploaded'})
-    data = request.json
-    if data:
-        return jsonify({'data': data})
-    else:
-        return jsonify("no data")
+    if request.method == 'POST':
+        file = request.files['image']
+        if file:
+            img = file.read()
+            prediction = img_pred(img)
+            return jsonify({'prediction': prediction})
+        else:
+            return jsonify({'error': 'No image uploaded'})
+    # data = request.json
+    # if data:
+    #     return jsonify({'data': data})
+    # else:
+    #     return jsonify("no data")
 
 if __name__ == '__main__':
     app.run(debug=True)
