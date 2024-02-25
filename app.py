@@ -5,12 +5,12 @@ import numpy as np
 from PIL import Image
 import cv2
 # from tensorflow.keras.models import load_model
-# from keras.models import load_model
+from keras.models import load_model
 
 app = Flask(__name__)
 
 # Load the trained model
-# model = load_model('final_project.h5')
+model = load_model('final_project.h5')
 
 # Function to predict the class of an uploaded image
 def img_pred(uploaded_image):
@@ -19,7 +19,7 @@ def img_pred(uploaded_image):
     img = cv2.resize(opencvImage, (150, 150))
     img = img.reshape(1, 150, 150, 3)
 
-    # p = model.predict(img)
+    p = model.predict(img)
     p = np.argmax(p, axis=1)[0]
 
     class_names = ['Glioma Tumor', 'No Tumor', 'Meningioma Tumor', 'Pituitary Tumor']
