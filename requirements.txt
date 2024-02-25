@@ -3,4 +3,4 @@ flask
 numpy
 Pillow
 opencv-python
-keras
+tensorflow-intel 2.15.0
