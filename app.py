@@ -43,7 +43,7 @@ def predict():
     #         return jsonify({'error': 'No image uploaded'})
     data = request.json
     if data:
-        return jsonify({data})
+        return jsonify({'data': data})
     else:
         return jsonify("no data")
 
