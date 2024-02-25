@@ -6,7 +6,7 @@ from PIL import Image
 import cv2
 # from tensorflow.keras.models import load_model
 from keras.models import load_model
-
+ 
 app = Flask(__name__)
 
 # Load the trained model
