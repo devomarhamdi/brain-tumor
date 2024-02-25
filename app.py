@@ -34,7 +34,7 @@ def index():
 # Create the endpoint for the model
 @app.route('/predict', methods=['POST'])
 def predict():
-    if request.method == 'POST':
+    # if request.method == 'POST':
         file = request.files['image']
         if file:
             img = file.read()
