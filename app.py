@@ -33,14 +33,19 @@ def index():
 # Create the endpoint for the model
 @app.route('/predict', methods=['POST'])
 def predict():
-    if request.method == 'POST':
-        file = request.files['image']
-        if file:
-            img = file.read()
-            prediction = img_pred(img)
-            return jsonify({'prediction': prediction})
-        else:
-            return jsonify({'error': 'No image uploaded'})
+    # if request.method == 'POST':
+    #     file = request.files['image']
+    #     if file:
+    #         img = file.read()
+    #         prediction = img_pred(img)
+    #         return jsonify({'prediction': prediction})
+    #     else:
+    #         return jsonify({'error': 'No image uploaded'})
+    data = request.json
+    if data:
+        return jsonify({data})
+    else:
+        return jsonify("no data")
 
 if __name__ == '__main__':
     app.run(debug=True)
