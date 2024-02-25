@@ -3,4 +3,3 @@ flask
 numpy
 Pillow
 opencv-python
-tensorflow
