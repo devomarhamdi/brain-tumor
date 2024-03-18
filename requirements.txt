@@ -3,4 +3,4 @@ flask
 numpy
 Pillow
 opencv-python
-tensorflow==2.0
+tensorflow==2.0.0
