@@ -32,8 +32,9 @@ def predict():
     if request.method == 'POST':
         file = request.files['image']
         if file:
-            img = file.read()
-            prediction = img_pred(img)
+            # img = file.read()
+            # prediction = img_pred(img)
+            # return jsonify({'prediction': prediction})
             return jsonify({'prediction': prediction})
         else:
             return jsonify({'error': 'No image uploaded'})
