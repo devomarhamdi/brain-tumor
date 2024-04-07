@@ -6,9 +6,8 @@ from PIL import Image
 import cv2
 from tensorflow.keras.models import load_model
 
-portNo = 5000
-
 app = Flask(__name__)
+
 # Load the trained model
 model = load_model('final_project.h5')
 
@@ -28,7 +27,7 @@ def img_pred(uploaded_image):
     return prediction
 
 # Create the endpoint for the model
-@app.route('/', methods=['POST'])
+@app.route('/predict', methods=['POST'])
 def predict():
     if request.method == 'POST':
         file = request.files['image']
@@ -38,6 +37,6 @@ def predict():
             return jsonify({'prediction': prediction})
         else:
             return jsonify({'error': 'No image uploaded'})
-            
-print(f"To acces the Gloable link please click {public_url}")
-app.run(port=portNo)
+
+if __name__ == '__main__':
+    app.run(debug=True)
