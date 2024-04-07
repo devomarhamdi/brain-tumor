@@ -3,5 +3,4 @@ numpy
 Pillow
 opencv-python
 tensorflow
-pyngrok
 gunicorn
