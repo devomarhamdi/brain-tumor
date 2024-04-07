@@ -5,8 +5,13 @@ import numpy as np
 from PIL import Image
 import cv2
 from tensorflow.keras.models import load_model
+from pyngrok import ngrok
 
-app = Flask(name)
+port_no = 5000
+
+app = Flask(__name__)
+ngrok.set_auth_token("2eh63LRJQ8vecMfrImu8f73UYbB_88QdUxCLPWK3WDfbKZvVS")
+public_url =  ngrok.connect(port_no).public_url
 
 # Load the trained model
 model = load_model('final_project.h5')
@@ -27,20 +32,16 @@ def img_pred(uploaded_image):
     return prediction
 
 # Create the endpoint for the model
-@app.route('/predict', methods=['POST'])
+@app.route('/', methods=['POST'])
 def predict():
     if request.method == 'POST':
-        if 'image' not in request.files:
-            return jsonify({'error': 'No image uploaded'})
         file = request.files['image']
-        if file.filename == '':
-            return jsonify({'error': 'No image selected'})
         if file:
             img = file.read()
             prediction = img_pred(img)
             return jsonify({'prediction': prediction})
         else:
             return jsonify({'error': 'No image uploaded'})
-
-if name == 'main':
-    app.run(debug=True)
+            
+print(f"To acces the Gloable link please click {public_url}")
+app.run(port=port_no)
