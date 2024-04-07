@@ -35,7 +35,7 @@ def predict():
             # img = file.read()
             # prediction = img_pred(img)
             # return jsonify({'prediction': prediction})
-            return jsonify({'prediction': prediction})
+            return jsonify({'prediction': 'done'})
         else:
             return jsonify({'error': 'No image uploaded'})
 
