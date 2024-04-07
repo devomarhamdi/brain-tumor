@@ -5,14 +5,10 @@ import numpy as np
 from PIL import Image
 import cv2
 from tensorflow.keras.models import load_model
-from pyngrok import ngrok
 
-port_no = 5000
+portNo = 5000
 
 app = Flask(__name__)
-ngrok.set_auth_token("2eh63LRJQ8vecMfrImu8f73UYbB_88QdUxCLPWK3WDfbKZvVS")
-public_url =  ngrok.connect(port_no).public_url
-
 # Load the trained model
 model = load_model('final_project.h5')
 
@@ -44,4 +40,4 @@ def predict():
             return jsonify({'error': 'No image uploaded'})
             
 print(f"To acces the Gloable link please click {public_url}")
-app.run(port=port_no)
+app.run(port=portNo)
